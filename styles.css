@@ -2,9 +2,9 @@
 
 body {
     margin: auto;
-    background-color: #eee;
+    background-color: #f0f0f0;
     font-family: "Open Sans", Helvetica, Arial, sans-serif;
-    width: 100%;
+    /*width: 100%;*/
     font-size: 17px;
     font-weight: bold;
 }
@@ -12,18 +12,20 @@ body {
 .header {
     width: 100%;
     display: table;
+    background-color: #ddd;
+    border-bottom: 1px solid #aaa;
 }
 
 .instructions {
     color: #222;
-    float: right;
-    padding: 35px;
+    float: left;
     font-size: 22px;
+    padding: 15px;
 }
 
 .newGame {
-    float: left;
-    padding: 40px;
+    float: right;
+    padding: 15px;
 }
 
 .newGame button {
@@ -31,11 +33,11 @@ body {
     background-color: #444;
     color: #fff;
     border: none;
+    cursor: pointer;
 }
 
 .grid {
-    width: 100%;
-    padding: 20px;
+    padding-top: 50px;
     text-align: center;
 }
 

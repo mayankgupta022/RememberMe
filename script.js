@@ -1,4 +1,5 @@
 var grid = {
+    
     initialize: function(options) {
         this.options = options;
         this.inTransition = false;
@@ -17,7 +18,6 @@ var grid = {
         }
         game.updateStatusGrid(this.blocks);
         this.isGameOn();
-
     },
 
     isGameOn: function() {
@@ -42,38 +42,38 @@ var grid = {
             this.blocks[self.index].state = "open";
         }
         if(this.open === 2) {
-            var index = -1;
-            for(var i=0 ; i < this.numOfTiles ; i++) {
-                if(this.tiles[i].state === "open" && index === -1) {
-                    index = i;
-                }
-                else if(this.tiles[i].state === "open" && this.tiles[i].val === this.tiles[index].val) {
-                    this.tiles[index].solve();
-                    this.tiles[i].solve();
-                    this.blocks[index].state = "solved";
-                    this.blocks[i].state = "solved";
-                    this.open = 0;
-                    this.solved += 2;
-                    this.isGameOn();
-                }
-                else if(this.tiles[i].state === "open") {
-                    break;
-                }
-            }
-            if(this.open) {
-                var that = this;
-                this.inTransition = true;
-                this.blocks[index].state = "closed";
-                this.blocks[i].state = "closed";
-                this.open = 0;
-                setTimeout(function() {
-                    that.tiles[index].flip();
-                    that.tiles[i].flip();
-                    that.inTransition = false;
-                }, 1000);
-            }
+            this.matchTiles(self.index);
         }
         game.updateStatusGrid(this.blocks);
+    },
+
+    matchTiles: function(index) {
+        var self = this;
+        for(var i=0 ; i < this.numOfTiles ; i++) {
+            if(i != index && this.tiles[i].state === "open") {
+                break;
+            }
+        }
+        if(this.tiles[i].val === this.tiles[index].val) {
+            this.tiles[index].solve();
+            this.tiles[i].solve();
+            this.blocks[index].state = "solved";
+            this.blocks[i].state = "solved";
+            this.open = 0;
+            this.solved += 2;
+            this.isGameOn();
+        }
+        if(this.open) {
+            this.inTransition = true;
+            this.blocks[index].state = "closed";
+            this.blocks[i].state = "closed";
+            this.open = 0;
+            setTimeout(function() {
+                self.tiles[index].flip();
+                self.tiles[i].flip();
+                self.inTransition = false;
+            }, 1000);
+        }
     },
 
     shuffle: function(array) {
@@ -132,7 +132,6 @@ var grid = {
             }));
         }
     }
-
 }
 
 var Tile = function(options) {
@@ -185,7 +184,6 @@ var Tile = function(options) {
             this.el.classList.add(this.state);
             this.options.grid.appendChild(this.el);
         }
-
     };
 
     tile.initialize(options);
@@ -238,7 +236,7 @@ var game = {
     getGridSize: function() {
         var gridSize = 0;
         while(typeof gridSize !== "number" || gridSize < 2 || gridSize > 8 || gridSize%2 !== 0) {
-            gridSize = prompt("How big do you want side of your grid to be? (enter an even number between 2 and 8)");
+            gridSize = prompt("What size do you want side of grid to be? (enter an even number between 2 and 8)", 4);
             gridSize = Number(gridSize);
         }
         return gridSize;
@@ -275,7 +273,6 @@ var game = {
         this.status.gameOn  = false;
         this.setStatus();
     }
-
 }
 
 document.body.onload = function(e) {
