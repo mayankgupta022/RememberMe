@@ -1,0 +1,86 @@
+@import url("http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800");
+
+body {
+    margin: auto;
+    background-color: #eee;
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    width: 100%;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.header {
+    width: 100%;
+    display: table;
+}
+
+.instructions {
+    color: #222;
+    float: right;
+    padding: 35px;
+    font-size: 22px;
+}
+
+.newGame {
+    float: left;
+    padding: 40px;
+}
+
+.newGame button {
+    padding: 10px;
+    background-color: #444;
+    color: #fff;
+    border: none;
+}
+
+.grid {
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+}
+
+.tile {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    margin: 10px;
+    padding: 15px;
+    font-size: 30px;
+    webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+.tile.open, .tile.closed {
+    cursor: pointer;
+}
+
+.tile.open, .tile.solved {
+    background: #aaa;
+}
+
+.tile.open {
+    transition:.6s background;
+}
+
+.tile.open span {
+    padding-right: 20px;
+}
+
+.tile.closed {
+    color: transparent;
+    background: url('tile.png') center center;
+    background-size: cover;
+    transition:.6s background;
+}
+
+.tile.solved:after {
+    content: '\2713';
+    color: #4f4;
+    float: right;
+    font-weight: bold;
+    font-size: 20px;
+}
