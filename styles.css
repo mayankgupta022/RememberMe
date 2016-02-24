@@ -74,7 +74,8 @@ body {
 
 .tile.closed {
     color: transparent;
-    background: url('tile.png') center center;
+    /*background: url('tile.png') center center;*/
+    background-color: #222;
     background-size: cover;
     transition:.6s background;
 }
